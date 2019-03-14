@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+	<div class="jumbotron jumbotron-fluid home">
+		<div class="container home">
+			<h1 class="display-4 home"><strong>Ja, alltså:<br> Mörtfors Dagblad, va?</strong></h1>
+			<style>@import url('https://fonts.googleapis.com/css?family=Lobster');</style>
+		</div>
+	</div>
+	<main>
+		<section class="container-fluid">
+			<div class="container container-smaller">
+				<div class="row home">
+					{% for text in texts %}
+							<div>
+								<h1><a href="/artikel/{{ text.art_id }}">{{ text.rubrik }}</a></h1>
+								<style>@import url('https://fonts.googleapis.com/css?family=Lobster');</style>
+								<h3>{{ text.ingress }}</h3>
+								<p>{{ text.datum }}</p>
+							</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	</main>
+
+{% endblock %}

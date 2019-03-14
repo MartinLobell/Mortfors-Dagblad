@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="jumbotron jumbotron-fluid home">
+        <div class="container home">
+            <p>{{ article_full.datum }}</p>
+            <h1 class="display-4 home">{{ article_full.rubrik }}</h1>
+            <style>@import url('https://fonts.googleapis.com/css?family=Lobster');</style>		
+            <div class="row">		
+                <div class="movie-info-col col-md-6">
+                    {% for author in authors %}
+                        <h4><a href="/journalist/{{ author.p_nr }}">{{ author.namn }}</a></h4>
+                    {% endfor %} 
+                    <h3>{{ article_full.ingress }}</h3>
+                    <p>{{ article_full.brodtext }}</p>
+                </div>
+                <div class="movie-info-col col-md-6">
+                    <img src={{ photos.bild }} alt="{{ photos.alt_text }}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+        <section class="container-fluid">
+			<div class="container container-smaller">
+				<div class="row home">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                     <form method="POST" action="">
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Kommentera Här</legend>
+                        <div class="form-group">
+                            {{ render_field(form.namn, class_="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ render_field(form.kommentar, class_="form-control") }}
+                        </div>
+                        <button type="submit" class="btn btn-primary form-submit-btn mt-1 mb-1">Kommentera!</button>
+                        </fieldset>
+                    </form>
+				</div>
+			</div>
+        </section>
+        <section>
+            <div class="container container-smaller">
+                <div class="row home">
+                    {% for comment in comments %}
+                        <div class="container container-smaller">
+                            <h5>{{ comment.namn }}</h5>
+                            {% if session.logged_in %}
+                                <form  method="POST" action="/delete_comment/{{ comment.kom_id }}">
+                                    <button type="submit" class="btn btn-primary">Ta bort</button>
+                                </form>
+                            {% endif %}
+                            <strong><p>{{ comment.kommentar }}</p></strong>
+                            <p>{{ comment.tid_datum }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+	</main>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+	<main class="form-page">
+		<section>
+			<div class="container">
+				<h1 class="display-4">Skriv in artikel</h1>
+			</div>
+		</section>
+		<section>
+			<div class="container">
+				{% from "includes/_formhelpers.html" import render_field %}
+				<form  method="POST" action="">
+					<div class="form-group">
+						{{ render_field(form.rubrik, class_="form-control") }}
+					</div>
+					<div class="form-group">
+						{{ render_field(form.ingress, class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(form.brodtext, class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(form.datum, class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(form.p_nr, class_="form-control") }}
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary form-submit-btn mt-1 mb-1">Skicka in!</button>
+					</div>
+				</form>
+				<p class="mt-1">Gick du fel? Ingen fara - <a href="/">Gå tillbaka här!</a></p>
+			</div>
+		</section>
+	</main>
+{% endblock %}

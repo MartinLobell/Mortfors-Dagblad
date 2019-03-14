@@ -1,0 +1,15 @@
+<nav class="navbar fixed-top navbar-expand-md navbar-dark">
+  <a class="navbar-brand" href="/">Mörtfors Dagblad</a>
+  <style>
+      @import url('https://fonts.googleapis.com/css?family=Lobster');
+  </style>
+  <ul class="navbar-nav">
+        {% if session.logged_in %}
+          <li class="navbar-item"><a class="nav-link" href="/add_article">Skriv artikel</a></li>
+          <li class="navbar-item"><a class="nav-link" href="/logout">Logga ut</a></li>
+        {% else %}
+        <li class="navbar-item"><a class="nav-link" href="/login">Admin</a></li>
+        {% endif %}
+    </li>
+  </ul>
+</nav>
