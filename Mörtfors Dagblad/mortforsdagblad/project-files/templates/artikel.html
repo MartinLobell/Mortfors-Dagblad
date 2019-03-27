@@ -4,19 +4,20 @@
 
     <div class="jumbotron jumbotron-fluid home">
         <div class="container home">
-            <p>{{ article_full.datum }}</p>
-            <h1 class="display-4 home">{{ article_full.rubrik }}</h1>
-            <style>@import url('https://fonts.googleapis.com/css?family=Lobster');</style>		
+            <p>{{ article_full[4] }}</p>
+            <h1 class="display-4 home">{{ article_full[1] }}</h1>
+            <style>@import url('https://fonts.googleapis.com/css?family=Lobster');</style>
             <div class="row">		
-                <div class="movie-info-col col-md-6">
+                <div class="article-info-col col-md-6">
+                    <h3>{{ article_full[2] }}</h3>
                     {% for author in authors %}
-                        <h4><a href="/journalist/{{ author.p_nr }}">{{ author.namn }}</a></h4>
+                        <h4><a href="/journalist/{{ author[1] }}">{{ author[0] }}</a></h4>
                     {% endfor %} 
-                    <h3>{{ article_full.ingress }}</h3>
-                    <p>{{ article_full.brodtext }}</p>
-                </div>
-                <div class="movie-info-col col-md-6">
-                    <img src={{ photos.bild }} alt="{{ photos.alt_text }}">
+                    <p>{{ article_full[3] }}</p>
+                    {% for photo in photos %}
+                        <img src="/static/bilder/photos/{{ photo[1] }}" alt="{{ photo[2] }}">
+                        <p><strong>{{ photo[3] }}</strong></p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -46,14 +47,14 @@
                 <div class="row home">
                     {% for comment in comments %}
                         <div class="container container-smaller">
-                            <h5>{{ comment.namn }}</h5>
+                            <h5>{{ comment[0] }}</h5>
                             {% if session.logged_in %}
-                                <form  method="POST" action="/delete_comment/{{ comment.kom_id }}">
+                                <form  method="POST" action="/delete_comment/{{ comment[3] }}">
                                     <button type="submit" class="btn btn-primary">Ta bort</button>
                                 </form>
                             {% endif %}
-                            <strong><p>{{ comment.kommentar }}</p></strong>
-                            <p>{{ comment.tid_datum }}</p>
+                            <strong><p>{{ comment[1] }}</p></strong>
+                            <p>{{ comment[2] }}</p>
                         </div>
                     {% endfor %}
                 </div>

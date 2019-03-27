@@ -4,15 +4,15 @@
 
 	<div class="jumbotron jumbotron-fluid home">
 		<div class="container home">
-			<h1 class="display-4 home">{{ journalist_info.namn }}</h1>
+			<h1 class="display-4 home">{{ journalist_info[1] }}</h1>
 			<style>@import url('https://fonts.googleapis.com/css?family=Lobster');</style>
 			{% if session.logged_in %}
-				<h4>{{ journalist_info.p_nr }}</h4>
-				<h4>Beskrivning: {{ journalist_info.anteckning }}</h4>
+				<h4>{{ journalist_info[0] }}</h4>
+				<h4>Beskrivning: {{ journalist_info[5] }}</h4>
 			{% endif %}
-			<img src={{ journalist_info.kontaktbild }} alt="Bild på anställd">
-			<h3>E-mail: {{ journalist_info.email }}</h3>
-			<h3>Telefon: {{ journalist_info.telefon }}</h3>
+			<img src="/static/bilder/employees/{{ journalist_info[4] }}" alt="Bild på anställd">
+			<h3>E-mail: {{ journalist_info[3] }}</h3>
+			<h3>Telefon: {{ journalist_info[2] }}</h3>
 		</div>
 	</div>
 	<main>
