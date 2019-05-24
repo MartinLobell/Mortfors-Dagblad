@@ -146,9 +146,9 @@ def article(art_id):
 
     cursor = mddb.cursor()
     cursor.execute("""SELECT namn, kommentar, tid_datum, kom_id
-    FROM kommentar
-    where art_id = %s""", 
-    (art_id,))
+                    FROM kommentar
+                    where art_id = %s""", 
+                    (art_id,))
     comments = cursor.fetchall()
 
     navbar = queries_function.get_nav_content()
